@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Greenhouse status</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+      body {
+        font-family: arial;
+      }
+      table {
+        border-style: solid;
+      }
+      thead {
+        font-weight: bold;
+        border-style: solid;
+        background-color: #D0D0D0;
+      }
+      .numero {
+        text-align: right
+      }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+      $.getJSON("http://localhost:8080/Control/parameters.json", function (obj) {
+        document.getElementById("luz").innerHTML = obj.luz;
+        document.getElementById("agua").innerHTML = obj.agua;
+        document.getElementById("temperatura").innerHTML = obj.temperatura;
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Staus</h1>
+    <hr/>
+    <table onload="handleFile">
+      <thead>
+      <th>Parametro</th>
+      <th>Cantidad</th>
+      <th>Unidad</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Agua</td>
+        <td id="agua" class="numero"></td>
+        <td>l/m2</td>
+      </tr>
+      <tr>
+        <td>Luz</td>
+        <td id="luz" class="numero"></td>
+        <td>lumenes</td>
+      </tr>
+      <tr>
+        <td>Temperatura</td>
+        <td id="temperatura" class="numero"></td>
+        <td>ºC</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
